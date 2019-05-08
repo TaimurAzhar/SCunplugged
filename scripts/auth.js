@@ -1,4 +1,5 @@
 var User;
+
 // add admin cloud function
 const adminForm = document.querySelector('.admin-actions');
 adminForm.addEventListener('submit', (e) => {
@@ -11,18 +12,37 @@ adminForm.addEventListener('submit', (e) => {
   });
 });
 
+// add teacher cloud function
+const teacherForm = document.querySelector('.teacher-actions');
+teacherForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const teacherEmail = document.querySelector('#teacher-email').value;
+  const addTeacherRole = functions.httpsCallable('addTeacherRole');
+  addTeacherRole({ email: teacherEmail }).then(result => {
+    console.log(result);
+  });
+});
+
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
+
   if (user) {
-    User = user
     user.getIdTokenResult().then(idTokenResult => {
+      user.teacher = idTokenResult.claims.teacher;
       user.admin = idTokenResult.claims.admin;
       setupUI(user);
+      if (user.admin) {
+        console.log("User is an Admin");
+      }
+      else {
+        db.collection('guides').orderBy("timestamp", "desc").onSnapshot(snapshot => {
+          setupGuides(snapshot.docs);
+        }, err => console.log(err.message));
+      }
     });
-    db.collection('guides').onSnapshot(snapshot => {
-      setupGuides(snapshot.docs);
-    }, err => console.log(err.message));
-  } else {
+  }
+  else {
     setupUI();
     setupGuides([]);
   }

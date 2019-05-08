@@ -8,43 +8,75 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <title>SCunplugged</title>
   <style>
-    .collapsible-header {
-      /* background-color: teal; */
-      /* background-repeat: */
+    .collapsible-header,
+    .collapsible-body {
       border-radius: 30px;
+    }
+
+    img {
+      width: 100%;
     }
 
     nav {
       font-weight: bold;
+      background-color: #2C2A4A;
+
+    }
+
+    nav a {
+      color: #7FDEFF !important;
+    }
+
+    body {
+      background-color: #DABFFF;
+    }
+
+    .btn {
+      background-color: #907AD6 !important;
+    }
+
+    .collapsible-header {
+      background-color: #6A4E8C;
+    }
+
+    .collapsible-body {
+      background-color: #907AD6;
+
+    }
+
+    p {
+      color: black;
+      font-weight: 500;
+      font-size: 1.5rem;
     }
   </style>
 </head>
 
-<body class="red lighten-3"></body>
+<body></body>
 
 <!-- NAVBAR -->
 <div class="navbar-fixed ">
-  <nav class="teal">
+  <nav>
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo red-text text-darken-3">
+      <a href="#" class="brand-logo">
         SCunplugged
         <!-- <img src="img/logo.png" style="width: 180px; margin-top: 10px;"> -->
       </a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="logged-in" style="display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-account">Account</a>
+          <a href="#" class="modal-trigger" data-target="modal-account">Account</a>
         </li>
         <li class="logged-in" style="display: none;">
-          <a href="#" class="white-text" id="logout">Logout</a>
+          <a href="#" class="" id="logout">Logout</a>
         </li>
-        <li class="admin" style="display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-create">Create Guide</a>
-        </li>
-        <li class="logged-out" style="display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-login">Login</a>
+        <li class="teacher" style="display: none;">
+          <a href="#" class=" modal-trigger" data-target="modal-create">Create Guide</a>
         </li>
         <li class="logged-out" style="display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-signup">Sign up</a>
+          <a href="#" class="modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out" style="display: none;">
+          <a href="#" class=" modal-trigger" data-target="modal-signup">Sign up</a>
         </li>
         </span>
       </ul>
@@ -55,8 +87,14 @@
 
 <!-- ADMIN ACTIONS -->
 <form class="center-align admin-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
-  <input type="email" placeholder="User email" id="admin-email" class="white-text" required />
-  <button class="btn-small red darken-2 pulse">Make admin</button>
+  <input type="email" placeholder="Enter Email" id="admin-email" class="white-text" required />
+  <button class="btn-small pulse">Make admin</button>
+</form>
+
+<!-- TEACHER ACTIONS -->
+<form class="center-align teacher-actions admin" style="margin: 40px auto; max-width: 300px; display: none;">
+  <input type="email" placeholder="Enter Email" id="teacher-email" class="white-text" required />
+  <button class="btn-small pulse">Make Teacher</button>
 </form>
 
 <!-- SIGN UP MODAL -->
