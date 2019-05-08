@@ -1,5 +1,8 @@
 // DOM elements
 const guideList = document.querySelector('.guides');
+const englishList = document.querySelector('.english');
+const scienceList = document.querySelector('.science');
+
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
@@ -69,6 +72,43 @@ const setupGuides = (data) => {
     guideList.innerHTML = '<h5 class="center-align">Login to as Student or Teacher to  view guides</h5>';
   }
 
+  let englishPosts = '';
+  db.collection("english").onSnapshot(snapshot => {
+    const docs = snapshot.docs;
+
+    docs.forEach(doc => {
+      const english = doc.data();
+      const li = `
+        <li>
+          <h2 class="collapsible-header"> ${english.title}</h1>
+          <div class="collapsible-body"> 
+            <p>${english.content}</p> 
+          </div>
+        </li>
+      `;
+      englishPosts += li;
+    });
+    englishList.innerHTML = englishPosts;
+  })
+
+  let sciencePosts = '';
+  db.collection("science").onSnapshot(snapshot => {
+    const docs = snapshot.docs;
+
+    docs.forEach(doc => {
+      const science = doc.data();
+      const li = `
+        <li>
+          <h2 class="collapsible-header"> ${science.title}</h1>
+          <div class="collapsible-body"> 
+            <p>${science.content}</p> 
+          </div>
+        </li>
+      `;
+      sciencePosts += li;
+    });
+    scienceList.innerHTML = sciencePosts;
+  })
 
 };
 
