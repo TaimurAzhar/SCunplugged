@@ -30,6 +30,9 @@ const setupUI = (user) => {
     // toggle user UI elements
     loggedInLinks.forEach(item => item.style.display = 'block');
     loggedOutLinks.forEach(item => item.style.display = 'none');
+    englishList.style.display = 'block'
+    scienceList.style.display = 'block'
+
   } else {
     // clear account info
     accountDetails.innerHTML = '';
@@ -38,6 +41,8 @@ const setupUI = (user) => {
     adminItems.forEach(item => item.style.display = 'none');
     loggedInLinks.forEach(item => item.style.display = 'none');
     loggedOutLinks.forEach(item => item.style.display = 'block');
+    englishList.style.display = 'none'
+    scienceList.style.display = 'none'
   }
 };
 
@@ -109,6 +114,8 @@ const setupGuides = (data) => {
     });
     scienceList.innerHTML = sciencePosts;
   })
+
+  console.log(englishList.style.display)
 
 };
 
